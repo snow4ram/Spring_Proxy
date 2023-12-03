@@ -1,4 +1,4 @@
-package proxydecember02.springproxy.noPorxy;
+package proxydecember02.springproxy.proxy;
 
 
 
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class OrderController {
 
-    private final OrderService orders;
+    private final OrderProxy orders;
 
     @GetMapping("/api/search")
     public String search(@RequestParam(name = "itemId") String itemId) {
 
-        Item search = orders.findByItemName(itemId);
+        Item search = orders.findItemName(itemId);
 
         log.info("search = {}" , search);
 

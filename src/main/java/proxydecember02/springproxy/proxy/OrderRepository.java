@@ -1,4 +1,4 @@
-package proxydecember02.springproxy.noPorxy;
+package proxydecember02.springproxy.proxy;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

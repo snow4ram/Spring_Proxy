@@ -1,4 +1,4 @@
-package proxydecember02.springproxy.noPorxy;
+package proxydecember02.springproxy.proxy;
 
 
 import lombok.RequiredArgsConstructor;
@@ -8,28 +8,25 @@ import org.springframework.stereotype.Service;
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class OrderServiceImpl implements OrderService{
+public class OrderProxy {
 
-    private final OrderRepository orderRepository;
+    private final OrderService orders;
 
-    @Override
-    public Item findByItemName(String itemId) {
-
-
+    public Item findItemName(String itemId) {
         try {
 
             long searchStartTime = System.currentTimeMillis();
 
             log.info("검색 시작 시간 = {}", searchStartTime);
 
-            Item item = orderRepository.findByItemName(itemId).orElseThrow();
+            Item byItemName = orders.findItemName(itemId);
 
             long searchTimeOut = System.currentTimeMillis();
 
             log.info("검색 종료 시간 = {}", searchTimeOut);
 
 
-            return item;
+            return byItemName;
 
         } catch (Exception e) {
             throw new IllegalArgumentException("정보가 없습니다.");

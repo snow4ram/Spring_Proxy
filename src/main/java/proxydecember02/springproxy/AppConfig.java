@@ -4,8 +4,8 @@ package proxydecember02.springproxy;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import proxydecember02.springproxy.noPorxy.Item;
-import proxydecember02.springproxy.noPorxy.OrderRepository;
+import proxydecember02.springproxy.proxy.Item;
+import proxydecember02.springproxy.proxy.OrderRepository;
 
 @Configuration
 @RequiredArgsConstructor
