@@ -20,4 +20,5 @@ public class AppConfig {
         orderRepository.save(new Item("itemB", 2000));
         orderRepository.save(new Item("itemC", 3000));
     }
+
 }
