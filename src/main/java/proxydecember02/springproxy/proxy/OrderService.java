@@ -5,4 +5,7 @@ public interface OrderService {
     //구매
     Item findItemName(String itemId);
 
+
+    void itemSave(Item item);
+
 }

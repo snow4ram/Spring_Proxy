@@ -15,8 +15,14 @@ public class OrderServiceImpl implements OrderService{
     @Override
     public Item findItemName(String itemId) {
 
-
         return orderRepository.findByItemName(itemId).orElseThrow();
 
     }
+
+    @Override
+    public void itemSave(Item item) {
+        orderRepository.save(item);
+    }
+
+
 }
