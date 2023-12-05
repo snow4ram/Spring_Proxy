@@ -4,6 +4,7 @@ package proxydecember02.springproxy.proxy;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.reflect.Proxy;
@@ -19,10 +20,9 @@ public class OrderController {
     @GetMapping("/api/search")
     public String search(@RequestParam(name = "itemId") String itemId) {
 
-        OrderProxy orderProxy = getOrderProxy();
+        ProxyFactory proxyFactory = new ProxyFactory(orders);
 
-        OrderService proxy = (OrderService) Proxy.newProxyInstance(orders.getClass().getClassLoader(), new Class[]{OrderService.class}, orderProxy);
-
+        OrderService proxy = (OrderService) proxyFactory.getProxy();
 
         Item itemName = proxy.findItemName(itemId);
 
@@ -33,12 +33,14 @@ public class OrderController {
     }
 
 
+
+
     @PostMapping("/api/save")
-    public String save(@RequestBody Item item) {
+    public String save(@RequestBody  Item item) {
 
-        OrderProxy orderProxy = getOrderProxy();
+        ProxyFactory proxyFactory = new ProxyFactory(orders);
 
-        OrderService proxy = (OrderService) Proxy.newProxyInstance(orders.getClass().getClassLoader(), new Class[]{OrderService.class}, orderProxy);
+        OrderService proxy = (OrderService) proxyFactory.getProxy();
 
         proxy.itemSave(item);
 
@@ -46,7 +48,4 @@ public class OrderController {
 
     }
 
-    private OrderProxy getOrderProxy() {
-        return new OrderProxy(orders);
-    }
 }
