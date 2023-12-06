@@ -5,12 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
+import org.springframework.stereotype.Service;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.Method;
-import java.util.Optional;
 
 @Slf4j
+@Service
 @RequiredArgsConstructor
 public class OrderInvocationHandlerProxy implements MethodInterceptor {
 
@@ -18,13 +17,11 @@ public class OrderInvocationHandlerProxy implements MethodInterceptor {
     @Override
     public Object invoke(MethodInvocation invocation) throws Throwable {
 
-
         long searchStartTime = System.currentTimeMillis();
 
         log.info("검색 시작 시간 = {}", searchStartTime);
 
         Object result = invocation.proceed();
-
 
         long searchTimeOut = System.currentTimeMillis();
 
