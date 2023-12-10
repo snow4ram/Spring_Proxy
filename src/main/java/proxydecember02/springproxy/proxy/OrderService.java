@@ -8,4 +8,6 @@ public interface OrderService {
 
     void itemSave(Item item);
 
+    void itemUpdate(ItemRe item);
+
 }

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@RequiredArgsConstructor
 public class OrderInvocationHandlerProxy implements MethodInterceptor {
 
 
@@ -30,4 +29,7 @@ public class OrderInvocationHandlerProxy implements MethodInterceptor {
         log.info("검색 종료 시간 = {}", resultTimeOut);
         return result;
     }
+
+
+
 }

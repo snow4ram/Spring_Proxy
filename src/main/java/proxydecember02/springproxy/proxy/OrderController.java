@@ -28,7 +28,6 @@ public class OrderController {
 
         proxyFactory.addAdvice(new OrderInvocationHandlerProxy());
 
-
         OrderService proxy = (OrderService) proxyFactory.getProxy();
 
 
@@ -63,13 +62,46 @@ public class OrderController {
 
 
 
-
     @PostMapping("/api/save")
     public String save(@RequestBody  Item item) {
 
         ProxyFactory proxyFactory = new ProxyFactory(orders);
 
         proxyFactory.addAdvice(new OrderInvocationHandlerProxy());
+
+        OrderService proxy = (OrderService) proxyFactory.getProxy();
+
+        proxy.itemSave(item);
+
+        return "Save!!";
+
+    }
+
+    @PostMapping("/api/update")
+    public String update(@RequestBody  ItemRe item) {
+
+        ProxyFactory proxyFactory = new ProxyFactory(orders);
+
+        proxyFactory.addAdvice(new OrderInvocationHandlerProxy());
+
+        OrderService proxy = (OrderService) proxyFactory.getProxy();
+
+        proxy.itemUpdate(item);
+
+        return "Update!!!";
+
+    }
+
+
+
+    @PostMapping("/api/save/advisor")
+    public String saveAdvisor(@RequestBody  Item item) {
+
+        ProxyFactory proxyFactory = new ProxyFactory(orders);
+
+        DefaultPointcutAdvisor defaultPointcutAdvisor = new DefaultPointcutAdvisor(Pointcut.TRUE, new OrderInvocationHandlerProxy());
+
+        proxyFactory.addAdvisor(defaultPointcutAdvisor);
 
         OrderService proxy = (OrderService) proxyFactory.getProxy();
 

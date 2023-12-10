@@ -30,4 +30,9 @@ public class Item {
         this.itemName = itemName;
         this.price = price;
     }
+
+    public void itemUpdate(ItemRe item) {
+        this.itemName = item.getItemName();
+        this.price = item.getPrice();
+    }
 }
